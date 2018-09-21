@@ -190,7 +190,7 @@ will return the standard deviation of the prediction. This follows the scikit-le
 <div class="section" id="measuring-disagreement">
 <h2>Measuring disagreement<a class="headerlink" href="#measuring-disagreement" title="Permalink to this headline">¶</a></h2>
 <p>With an ensemble of regressors like in the CommitteeRegressor model, a measure of disagreement can be the standard deviation of predictions, which provides a simple way to query for labels. This is not the case in general: for ordinary regressors, it is difficult to come up with viable query strategies because they don’t always provide a way to measure uncertainty. (One notable exception is the Gaussian process regressor.)</p>
-<p>This is demonstrated in <a class="reference external" href="../examplex/Ensemble-regression.html">this example</a>, where two regressors are trained on distinct subsets of the same dataset. In the figure below, the regressors are shown along with the mean predictions and the standard deviation.</p>
+<p>This is demonstrated in <a class="reference external" href="../examples/Ensemble-regression.html">this example</a>, where two regressors are trained on distinct subsets of the same dataset. In the figure below, the regressors are shown along with the mean predictions and the standard deviation.</p>
 <img alt="../../_images/er-initial1.png" class="align-center" src="../../_images/er-initial1.png" />
 </div>
 </div>
