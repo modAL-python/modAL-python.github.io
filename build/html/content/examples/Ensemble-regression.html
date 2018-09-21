@@ -198,8 +198,7 @@ CommitteeRegressor class.</p>
 </div>
 <div class="section" id="measuring-disagreement-with-committeeregression">
 <h2>Measuring disagreement with CommitteeRegression<a class="headerlink" href="#measuring-disagreement-with-committeeregression" title="Permalink to this headline">¶</a></h2>
-<p>If you have several regressors, measuring disagreement can be done by calculating the standard deviation of the predictions for each point. This of course cannot be achieved with classifier algorithms, where averaging the class labels doesn’t make sense. (Or it is undefined even, if the class labels are strings for example.) In the simplest setting, this is implemented in the function
-<code class="docutils literal notranslate"><span class="pre">modAL.disagreement.max_std_sampling</span></code>. For more details on this, see the <a class="reference external" href="Disagreement-sampling-API">disagreement sampling API reference</a>.</p>
+<p>If you have several regressors, measuring disagreement can be done by calculating the standard deviation of the predictions for each point. This of course cannot be achieved with classifier algorithms, where averaging the class labels doesn’t make sense. (Or it is undefined even, if the class labels are strings for example.) In the simplest setting, this is implemented in the function <code class="docutils literal notranslate"><span class="pre">modAL.disagreement.max_std_sampling</span></code>.</p>
 <p>This measure is default for CommitteeRegressors, so we don’t need to specify this upon initialization.</p>
 </div>
 <div class="section" id="active-regression">

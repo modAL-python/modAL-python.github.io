@@ -20,7 +20,7 @@ For this example, we shall try to learn the *noisy sine* function:
 Uncertainty measure and query strategy for Gaussian processes
 -------------------------------------------------------------
 
-For active learning, we shall define a custom query strategy tailored to Gaussian processes. More information on how to write your custom query strategies can be found at the page `Extending modAL <../overview/Extending-modAL>`__. In a nutshell, a *query stategy* in modAL is a function taking (at least) two arguments (an estimator object and a pool of examples), outputting the index of the queried instance and the instance itself. In our case, the arguments are ``regressor`` and ``X``.
+For active learning, we shall define a custom query strategy tailored to Gaussian processes. More information on how to write your custom query strategies can be found at the page `Extending modAL <../overview/Extending-modAL.html>`__. In a nutshell, a *query stategy* in modAL is a function taking (at least) two arguments (an estimator object and a pool of examples), outputting the index of the queried instance and the instance itself. In our case, the arguments are ``regressor`` and ``X``.
 
 .. code:: python
 
