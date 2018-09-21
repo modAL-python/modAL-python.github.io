@@ -25,8 +25,7 @@ For the sake of this example, we are going to learn the *noisy absolute value* f
 Measuring disagreement with CommitteeRegression
 -----------------------------------------------
 
-If you have several regressors, measuring disagreement can be done by calculating the standard deviation of the predictions for each point. This of course cannot be achieved with classifier algorithms, where averaging the class labels doesn't make sense. (Or it is undefined even, if the class labels are strings for example.) In the simplest setting, this is implemented in the function
-``modAL.disagreement.max_std_sampling``. For more details on this, see the `disagreement sampling API reference <Disagreement-sampling-API>`__.
+If you have several regressors, measuring disagreement can be done by calculating the standard deviation of the predictions for each point. This of course cannot be achieved with classifier algorithms, where averaging the class labels doesn't make sense. (Or it is undefined even, if the class labels are strings for example.) In the simplest setting, this is implemented in the function ``modAL.disagreement.max_std_sampling``.
 
 This measure is default for CommitteeRegressors, so we don't need to specify this upon initialization.
 
