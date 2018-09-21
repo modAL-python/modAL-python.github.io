@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>modAL in a nutshell &mdash; modAL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installation" href="Installation.html" />
+    <link rel="prev" title="modAL: A modular active learning framework for Python3" href="../../index.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/modAL_b.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">modAL in a nutshell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#active-learning-from-bird-s-eye-view">Active learning from bird’s-eye view</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modal-in-action">modAL in action</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from-zero-to-one-in-a-few-lines-of-code">From zero to one in a few lines of code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replacing-parts-quickly">Replacing parts quickly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replacing-parts-with-your-own-solutions">Replacing parts with your own solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-with-active-regression">An example with active regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-examples">Additional examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#citing">Citing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-the-developer">About the developer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Extending-modAL.html">Extending modAL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/ActiveLearner.html">ActiveLearner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/BayesianOptimizer.html">BayesianOptimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Committee.html">Committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/CommitteeRegressor.html">CommitteeRegressor</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Query strategies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Acquisition-functions.html">Acquisition functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Uncertainty-sampling.html">Uncertainty sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Disagreement-sampling.html">Disagreement sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Pool-based-sampling.html">Pool-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Stream-based-sampling.html">Stream-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Active-regression.html">Active regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Ensemble-regression.html">Ensemble regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Bayesian-optimization.html">Bayesian optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Query-by-committee.html">Query by committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Bootstrapping-and-bagging.html">Bootstrapping and bagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Keras-integration.html">Keras integration</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">modAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>modAL in a nutshell</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/content/overview/modAL-in-a-nutshell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modal-in-a-nutshell">
+<h1>modAL in a nutshell<a class="headerlink" href="#modal-in-a-nutshell" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><em>modal: adjective, relating to structure as opposed to substance</em></div>
+<div class="line">(Merriam-Webster Dictionary)</div>
+</div>
+<p>modAL is an active learning framework for Python3, designed with <em>modularity, flexibility</em> and <em>extensibility</em> in mind. Built on top of scikit-learn, it allows you to rapidly create active learning workflows with nearly complete freedom. What is more, you can easily replace parts with your custom built solutions, allowing you to design novel algorithms with ease.</p>
+</div>
+<div class="section" id="active-learning-from-bird-s-eye-view">
+<h2>Active learning from bird’s-eye view<a class="headerlink" href="#active-learning-from-bird-s-eye-view" title="Permalink to this headline">¶</a></h2>
+<p>With the recent explosion of available data, you have can have millions of unlabelled examples with a high cost to obtain labels. For instance, when trying to predict the sentiment of tweets, obtaining a training set
+can require immense manual labour. But worry not, active learning comes to the rescue! In general, AL is a framework allowing you to increase classification performance by intelligently querying you to label the most informative instances. To give an example, suppose that you have the following data and classifier with shaded regions signifying the classification probability.</p>
+<img alt="../../_images/motivating-example.png" class="align-center" src="../../_images/motivating-example.png" />
+<p>Suppose that you can query the label of an unlabelled instance, but it costs you a lot. Which one would you choose? By querying an instance in the uncertain region, surely you obtain more information than querying by random. Active learning gives you a set of tools to handle problems like this. In general, an active learning workflow looks like the following.</p>
+<img alt="../../_images/active-learning.png" class="align-center" src="../../_images/active-learning.png" />
+<p>The key components of any workflow are the <strong>model</strong> you choose, the <strong>uncertainty</strong> measure you use and the <strong>query</strong> strategy you apply to request labels. With modAL, instead of choosing from a small set of built-in components, you have the freedom to seamlessly integrate scikit-learn or Keras models into your algorithm and easily tailor your custom query strategies and uncertainty measures.</p>
+</div>
+<div class="section" id="modal-in-action">
+<h2>modAL in action<a class="headerlink" href="#modal-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Let’s see what modAL can do for you!</p>
+<div class="section" id="from-zero-to-one-in-a-few-lines-of-code">
+<h3>From zero to one in a few lines of code<a class="headerlink" href="#from-zero-to-one-in-a-few-lines-of-code" title="Permalink to this headline">¶</a></h3>
+<p>Active learning with a scikit-learn classifier, for instance RandomForestClassifier, can be as simple as the following.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># initializing the learner</span>
+<span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
+    <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span>
+<span class="p">)</span>
+
+<span class="c1"># query for labels</span>
+<span class="n">query_idx</span><span class="p">,</span> <span class="n">query_inst</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
+
+<span class="c1"># ...obtaining new labels from the Oracle...</span>
+
+<span class="c1"># supply label for queried instance</span>
+<span class="n">learner</span><span class="o">.</span><span class="n">teach</span><span class="p">(</span><span class="n">X_pool</span><span class="p">[</span><span class="n">query_idx</span><span class="p">],</span> <span class="n">y_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="replacing-parts-quickly">
+<h3>Replacing parts quickly<a class="headerlink" href="#replacing-parts-quickly" title="Permalink to this headline">¶</a></h3>
+<p>If you would like to use different uncertainty measures and query
+strategies than the default uncertainty sampling, you can either replace
+them with several built-in strategies or you can design your own by
+following a few very simple design principles. For instance, replacing
+the default uncertainty measure to classification entropy looks the
+following.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span>
+<span class="kn">from</span> <span class="nn">modAL.uncertainty</span> <span class="k">import</span> <span class="n">entropy_sampling</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
+    <span class="n">query_strategy</span><span class="o">=</span><span class="n">entropy_sampling</span><span class="p">,</span>
+    <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="replacing-parts-with-your-own-solutions">
+<h3>Replacing parts with your own solutions<a class="headerlink" href="#replacing-parts-with-your-own-solutions" title="Permalink to this headline">¶</a></h3>
+<p>modAL was designed to make it easy for you to implement your own query
+strategy. For example, implementing and using a simple random sampling
+strategy is as easy as the following.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">random_sampling</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">):</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
+    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">query_idx</span><span class="p">,</span> <span class="n">X_pool</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+
+<span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
+    <span class="n">query_strategy</span><span class="o">=</span><span class="n">random_sampling</span><span class="p">,</span>
+    <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For more details on how to implement your custom strategies, visit the
+page <a class="reference external" href="Extending-modAL">Extending modAL</a>!</p>
+</div>
+<div class="section" id="an-example-with-active-regression">
+<h3>An example with active regression<a class="headerlink" href="#an-example-with-active-regression" title="Permalink to this headline">¶</a></h3>
+<p>To see modAL in <em>real</em> action, let’s consider an active regression
+problem with Gaussian processes! In this example, we shall try to learn
+the <em>noisy sine</em> function:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For active learning, we shall define a custom query strategy tailored to
+Gaussian processes. In a nutshell, a <em>query stategy</em> in modAL is a
+function taking (at least) two arguments (an estimator object and a pool
+of examples), outputting the index of the queried instance and the
+instance itself. In our case, the arguments are <code class="docutils literal notranslate"><span class="pre">regressor</span></code> and <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GP_regression_std</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">query_idx</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>After setting up the query strategy and the data, the active learner can
+be initialized.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="k">import</span> <span class="n">GaussianProcessRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="k">import</span> <span class="n">WhiteKernel</span><span class="p">,</span> <span class="n">RBF</span>
+
+<span class="n">n_initial</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">initial_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_initial</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">]</span>
+
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale_bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">))</span> \
+         <span class="o">+</span> <span class="n">WhiteKernel</span><span class="p">(</span><span class="n">noise_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise_level_bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">,</span> <span class="mf">1e+1</span><span class="p">))</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">),</span>
+    <span class="n">query_strategy</span><span class="o">=</span><span class="n">GP_regression_std</span><span class="p">,</span>
+    <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The initial regressor is not very accurate.</p>
+<img alt="../../_images/gp-initial1.png" class="align-center" src="../../_images/gp-initial1.png" />
+<p>The blue band enveloping the regressor represents the standard deviation
+of the Gaussian process at the given point. Now we are ready to do
+active learning!</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># active learning</span>
+<span class="n">n_queries</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_queries</span><span class="p">):</span>
+    <span class="n">query_idx</span><span class="p">,</span> <span class="n">query_instance</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">teach</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>After a few queries, we can see that the prediction is much improved.</p>
+<img alt="../../_images/gp-final1.png" class="align-center" src="../../_images/gp-final1.png" />
+</div>
+<div class="section" id="additional-examples">
+<h3>Additional examples<a class="headerlink" href="#additional-examples" title="Permalink to this headline">¶</a></h3>
+<p>Including this, many examples are available:</p>
+<ul class="simple">
+<li><a class="reference external" href="../examples/Pool-based-sampling.html">Pool-based sampling</a></li>
+<li><a class="reference external" href="../examples/Stream-based-sampling.html">Stream-based sampling</a></li>
+<li><a class="reference external" href="../examples/Active-regression.html">Active regression</a></li>
+<li><a class="reference external" href="../examples/Ensemble-regression.html">Ensemble regression</a></li>
+<li><a class="reference external" href="../examples/Bayesian-optimization.html">Bayesian optimization</a></li>
+<li><a class="reference external" href="../examples/Query-by-committee.html">Query by committee</a></li>
+<li><a class="reference external" href="../examples/Bootstrapping-and-bagging.html">Bootstrapping and bagging</a></li>
+<li><a class="reference external" href="../examples/Keras-integration.html">Keras integration</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="citing">
+<h2>Citing<a class="headerlink" href="#citing" title="Permalink to this headline">¶</a></h2>
+<p>If you use modAL in your projects, you can cite it as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">modAL2018</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">mod</span><span class="p">{</span><span class="n">AL</span><span class="p">}:</span> <span class="p">{</span><span class="n">A</span><span class="p">}</span> <span class="n">modular</span> <span class="n">active</span> <span class="n">learning</span> <span class="n">framework</span> <span class="k">for</span> <span class="p">{</span><span class="n">P</span><span class="p">}</span><span class="n">ython</span><span class="p">},</span>
+    <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Tivadar</span> <span class="n">Danka</span> <span class="ow">and</span> <span class="n">Peter</span> <span class="n">Horvath</span><span class="p">},</span>
+    <span class="n">url</span><span class="o">=</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cosmic</span><span class="o">-</span><span class="n">cortex</span><span class="o">/</span><span class="n">modAL</span><span class="p">},</span>
+    <span class="n">note</span><span class="o">=</span><span class="p">{</span><span class="n">available</span> <span class="n">on</span> <span class="n">arXiv</span> <span class="n">at</span> \<span class="n">url</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">1805.00979</span><span class="p">}}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="about-the-developer">
+<h2>About the developer<a class="headerlink" href="#about-the-developer" title="Permalink to this headline">¶</a></h2>
+<p>modAL is developed by me, <a class="reference external" href="https://www.tivadardanka.com">Tivadar
+Danka</a> (aka
+<a class="reference external" href="https://github.com/cosmic-cortex">cosmic-cortex</a> in GitHub). I have a PhD in pure mathematics, but I fell in love with biology and machine learning right after I finished my PhD. I have changed fields and now I work in the <a class="reference external" href="http://group.szbk.u-szeged.hu/sysbiol/horvath-peter-lab-index.html">Bioimage Analysis and Machine Learning Group of Peter Horvath</a>, where I am working to develop active learning strategies for intelligent sample analysis in biology. During my work I realized that in Python, creating and prototyping active learning workflows can be made really easy and fast with scikit-learn, so I ended up developing a general framework for this. The result is modAL :) If you have any questions, requests or suggestions, you can contact me at <a class="reference external" href="mailto:85a5187a&#37;&#52;&#48;opayq&#46;com">85a5187a<span>&#64;</span>opayq<span>&#46;</span>com</a>! I hope you’ll find modAL useful!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../index.html" class="btn btn-neutral" title="modAL: A modular active learning framework for Python3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tivadar Danka
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

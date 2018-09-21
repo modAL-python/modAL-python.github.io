@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Committee &mdash; modAL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CommitteeRegressor" href="CommitteeRegressor.html" />
+    <link rel="prev" title="BayesianOptimizer" href="BayesianOptimizer.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/modAL_b.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/modAL-in-a-nutshell.html">modAL in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Extending-modAL.html">Extending modAL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Models</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ActiveLearner.html">ActiveLearner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BayesianOptimizer.html">BayesianOptimizer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Committee</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iterating-through-the-learners-of-the-committee">Iterating through the learners of the Committee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#training-and-querying-for-labels">Training and querying for labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bagging">Bagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-strategies">Query strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#voting-and-predicting">Voting and predicting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CommitteeRegressor.html">CommitteeRegressor</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Query strategies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Acquisition-functions.html">Acquisition functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Uncertainty-sampling.html">Uncertainty sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Disagreement-sampling.html">Disagreement sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Pool-based-sampling.html">Pool-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Stream-based-sampling.html">Stream-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Active-regression.html">Active regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Ensemble-regression.html">Ensemble regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Bayesian-optimization.html">Bayesian optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Query-by-committee.html">Query by committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Bootstrapping-and-bagging.html">Bootstrapping and bagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/Keras-integration.html">Keras integration</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">modAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Committee</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/content/models/Committee.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="committee">
+<h1>Committee<a class="headerlink" href="#committee" title="Permalink to this headline">¶</a></h1>
+<p>One of the popular active learning strategies is the <em>Query by Committee</em>, where we keep several hypotheses (i.e. trained classifiers)
+about the data, and we select our queries by measuring the disagreement of the hypotheses. In modAL, this model is implemented in the Committee class.</p>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>To create a Committee object, you need to provide two things: a list of <em>ActiveLearner</em> objects and a <em>query strategy function</em>. (A list of <em>scikit-learn estimators</em> won’t suffice, because each learner needs to keep track of the training examples it has seen.) For instance, you can do the following.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">Committee</span>
+<span class="kn">from</span> <span class="nn">modAL.disagreement</span> <span class="k">import</span> <span class="n">vote_entropy_sampling</span>
+
+<span class="c1"># a list of ActiveLearners:</span>
+<span class="n">learners</span> <span class="o">=</span> <span class="p">[</span><span class="n">learner_1</span><span class="p">,</span> <span class="n">learner_2</span><span class="p">]</span>
+
+<span class="n">committee</span> <span class="o">=</span> <span class="n">Committee</span><span class="p">(</span>
+    <span class="n">learner_list</span><span class="o">=</span><span class="n">learners</span><span class="p">,</span>
+    <span class="n">query_strategy</span><span class="o">=</span><span class="n">vote_entropy_sampling</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can find the disagreement-based query strategies in <code class="docutils literal notranslate"><span class="pre">modAL.disagreement</span></code>, although a Committee works with uncertainty sampling strategies also. (Using a Committee with uncertainty sampling can be useful, for instance if you would like to build an active regression model and you need an ensemble of regressors to estimate uncertainty.)</p>
+</div>
+<div class="section" id="iterating-through-the-learners-of-the-committee">
+<h2>Iterating through the learners of the Committee<a class="headerlink" href="#iterating-through-the-learners-of-the-committee" title="Permalink to this headline">¶</a></h2>
+<p>Since Committee is iterable, feel free to use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop just as you would in any other case:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">learner</span> <span class="ow">in</span> <span class="n">committee</span><span class="p">:</span>
+    <span class="c1"># ...do something with the learner...</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">len(committee)</span></code> also works, it returns the number of learners in the
+Committee.</p>
+</div>
+<div class="section" id="training-and-querying-for-labels">
+<h2>Training and querying for labels<a class="headerlink" href="#training-and-querying-for-labels" title="Permalink to this headline">¶</a></h2>
+<p>Training and querying for labels work exactly the same as for the ActiveLearner. To teach new examples for the Committee, you should use the <code class="docutils literal notranslate"><span class="pre">.teach(X,</span> <span class="pre">y)</span></code> method, where <code class="docutils literal notranslate"><span class="pre">X</span></code> contains the new training examples and <code class="docutils literal notranslate"><span class="pre">y</span></code> contains the corresponding labels or values. This teaches the new training example for all learners in the Committee, hopefully improving performance.</p>
+<p>To select the best instances to label, use the <code class="docutils literal notranslate"><span class="pre">.query(X)</span></code> method, just like for the ActiveLearner. It simply calls the query strategy function you specified, which measures the utility for each sample and selects the ones having the highest utility.</p>
+</div>
+<div class="section" id="bagging">
+<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h2>
+<p>When building ensemble models such as in the Query by Committee setting, bagging can be useful and can improve performance. In Committee, this can be done with the methods <code class="docutils literal notranslate"><span class="pre">.bag(X,</span> <span class="pre">y)</span></code> and <code class="docutils literal notranslate"><span class="pre">.rebag()</span></code>. The difference between them is that <code class="docutils literal notranslate"><span class="pre">.bag(X,</span> <span class="pre">y)</span></code> makes each learner forget the data it has seen until this point and replaces it with <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, while <code class="docutils literal notranslate"><span class="pre">.rebag()</span></code> refits each learner in the Committee by bootstrapping its training instances but leaving them as they were.</p>
+<p>Bagging is also available during teaching new examples by passing <code class="docutils literal notranslate"><span class="pre">bootstrap=True</span></code> for the <code class="docutils literal notranslate"><span class="pre">.teach()</span></code> method. Just like this:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">committee</span><span class="o">.</span><span class="n">teach</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>First, this stores the new training examples and labels in each learner, then fits them using a bootstrapped subset of the known examples for the learner.</p>
+</div>
+<div class="section" id="query-strategies">
+<h2>Query strategies<a class="headerlink" href="#query-strategies" title="Permalink to this headline">¶</a></h2>
+<p>Currently, there are three built-in query by committee strategies in modAL: <em>max vote entropy</em>, <em>max uncertainty entropy</em> and <em>max
+disagreement</em>. They are located in the <code class="docutils literal notranslate"><span class="pre">modAL.disagreement</span></code> module. You can find an <a class="reference external" href="../query_strategies/Disagreement-sampling.html">informal tutorial here</a>.</p>
+</div>
+<div class="section" id="voting-and-predicting">
+<h2>Voting and predicting<a class="headerlink" href="#voting-and-predicting" title="Permalink to this headline">¶</a></h2>
+<p>Although the API for predicting is the same for Committee than the ActiveLearner class, they are working slightly differently under the
+hood.</p>
+<div class="line-block">
+<div class="line">To obtain the predictions and class probabilities <em>for each learner</em>
+in the Committee, you should use the <code class="docutils literal notranslate"><span class="pre">.vote(X)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">.vote_proba(X)</span></code> methods, where <code class="docutils literal notranslate"><span class="pre">X</span></code> contains the samples to be
+predicted.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">.vote(X)</span></code> returns a numpy array of shape [n_samples, n_learners]
+containing the class predictions according to each learner, while
+<code class="docutils literal notranslate"><span class="pre">.vote_proba(X)</span></code> returns a numpy array of shape [n_samples,
+n_learners, n_classes] containing the class probabilities for each
+learner. You don’t need to worry about different learners seeing a
+different set of class labels, Committee is smart about that.</div>
+</div>
+<p>To get the predictions and class probabilities of the Committee itself, you shall use the <code class="docutils literal notranslate"><span class="pre">.predict(X)</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code> methods, they are used like their <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> relatives. <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code> returns the class probability averaged across each learner (the so-called <em>consensus probabilities</em>), while <code class="docutils literal notranslate"><span class="pre">.predict()</span></code> selects the most likely label based on the consensus probabilities.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CommitteeRegressor.html" class="btn btn-neutral float-right" title="CommitteeRegressor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BayesianOptimizer.html" class="btn btn-neutral" title="BayesianOptimizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tivadar Danka
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

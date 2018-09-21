@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Query by committee &mdash; modAL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Bootstrapping and bagging" href="Bootstrapping-and-bagging.html" />
+    <link rel="prev" title="Bayesian optimization" href="Bayesian-optimization.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/modAL_b.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/modAL-in-a-nutshell.html">modAL in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Extending-modAL.html">Extending modAL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/ActiveLearner.html">ActiveLearner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/BayesianOptimizer.html">BayesianOptimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Committee.html">Committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/CommitteeRegressor.html">CommitteeRegressor</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Query strategies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Acquisition-functions.html">Acquisition functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Uncertainty-sampling.html">Uncertainty sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Disagreement-sampling.html">Disagreement sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pool-based-sampling.html">Pool-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stream-based-sampling.html">Stream-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Active-regression.html">Active regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble-regression.html">Ensemble regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian-optimization.html">Bayesian optimization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Query by committee</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-dataset">The dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initializing-the-committee">Initializing the Committee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#active-learning">Active learning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Bootstrapping-and-bagging.html">Bootstrapping and bagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keras-integration.html">Keras integration</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">modAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Query by committee</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/content/examples/Query-by-committee.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="query-by-committee">
+<h1>Query by committee<a class="headerlink" href="#query-by-committee" title="Permalink to this headline">¶</a></h1>
+<p><em>Query by committee</em> is another popular active learning strategy, which alleviates many disadvantages of uncertainty sampling. For instance, uncertainty sampling tends to be biased towards the actual learner and it may miss important examples which are not in the sight of the estimator. This is fixed by keeping several hypotheses at the same time, selecting queries where disagreement occurs between them. In this example, we shall see how this works in the simplest case, using the iris dataset.</p>
+<p>The executable script for this example is <a class="reference external" href="https://github.com/cosmic-cortex/modAL/blob/master/examples/query_by_committee.py">available here!</a></p>
+<div class="section" id="the-dataset">
+<h2>The dataset<a class="headerlink" href="#the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use the iris dataset for this example. For more information on the iris dataset, see <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set">its wikipedia page</a>. For its scikit-learn interface, see <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html">the scikit-learn documentation</a>.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
+
+<span class="c1"># loading the iris dataset</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+
+<span class="c1"># generate the pool</span>
+<span class="n">X_pool</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+<span class="n">y_pool</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>If you perform a PCA on the iris dataset, here is how it looks like:</p>
+<div class="figure align-center">
+<img alt="../../_images/qbc-iris_pca.png" src="../../_images/qbc-iris_pca.png" />
+</div>
+</div>
+<div class="section" id="initializing-the-committee">
+<h2>Initializing the Committee<a class="headerlink" href="#initializing-the-committee" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we are going to use the <code class="docutils literal notranslate"><span class="pre">Committee</span></code> class from <code class="docutils literal notranslate"><span class="pre">modAL.models</span></code>. Its interface is almost exactly identical to the
+<code class="docutils literal notranslate"><span class="pre">ActiveLearner</span></code>. Upon initialization, <code class="docutils literal notranslate"><span class="pre">Committee</span></code> requires a list of active learners.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span><span class="p">,</span> <span class="n">Committee</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># initializing Committee members</span>
+<span class="n">n_members</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">learner_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">member_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_members</span><span class="p">):</span>
+    <span class="c1"># initial training data</span>
+    <span class="n">n_initial</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">train_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_pool</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_initial</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">X_training</span> <span class="o">=</span> <span class="n">X_pool</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+    <span class="n">y_training</span> <span class="o">=</span> <span class="n">y_pool</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+
+    <span class="c1"># creating a reduced copy of the data with the known instances removed</span>
+    <span class="n">X_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X_pool</span><span class="p">,</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">y_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_pool</span><span class="p">,</span> <span class="n">train_idx</span><span class="p">)</span>
+
+    <span class="c1"># initializing learner</span>
+    <span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
+        <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span>
+    <span class="p">)</span>
+    <span class="n">learner_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">learner</span><span class="p">)</span>
+
+<span class="c1"># assembling the committee</span>
+<span class="n">committee</span> <span class="o">=</span> <span class="n">Committee</span><span class="p">(</span><span class="n">learner_list</span><span class="o">=</span><span class="n">learner_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, the various hypotheses (which are taking the form of ActiveLearners) can be quite different.</p>
+<div class="figure align-center">
+<img alt="../../_images/qbc-initial_learners.png" src="../../_images/qbc-initial_learners.png" />
+</div>
+<p>Prediction is done by averaging the class probabilities for each learner and chosing the most likely class.</p>
+<div class="figure align-center">
+<img alt="../../_images/qbc-initial_committee.png" src="../../_images/qbc-initial_committee.png" />
+</div>
+</div>
+<div class="section" id="active-learning">
+<h2>Active learning<a class="headerlink" href="#active-learning" title="Permalink to this headline">¶</a></h2>
+<p>The active learning loop is the same as for the <code class="docutils literal notranslate"><span class="pre">ActiveLearner</span></code>.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># query by committee</span>
+<span class="n">n_queries</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_queries</span><span class="p">):</span>
+    <span class="n">query_idx</span><span class="p">,</span> <span class="n">query_instance</span> <span class="o">=</span> <span class="n">committee</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)</span>
+    <span class="n">committee</span><span class="o">.</span><span class="n">teach</span><span class="p">(</span>
+        <span class="n">X</span><span class="o">=</span><span class="n">X_pool</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y_pool</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># remove queried instance from pool</span>
+    <span class="n">X_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X_pool</span><span class="p">,</span> <span class="n">query_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">y_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_pool</span><span class="p">,</span> <span class="n">query_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After a few queries, the hypotheses straighten out their disagreements and they reach consensus. Prediction accuracy is greatly improved in this case.</p>
+<div class="figure align-center">
+<img alt="../../_images/qbc-final_learners.png" src="../../_images/qbc-final_learners.png" />
+</div>
+<div class="figure align-center">
+<img alt="../../_images/qbc-final_committee.png" src="../../_images/qbc-final_committee.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Bootstrapping-and-bagging.html" class="btn btn-neutral float-right" title="Bootstrapping and bagging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Bayesian-optimization.html" class="btn btn-neutral" title="Bayesian optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tivadar Danka
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

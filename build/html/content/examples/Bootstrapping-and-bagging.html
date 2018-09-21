@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bootstrapping and bagging &mdash; modAL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Bringing your Keras models to modAL workflows" href="Keras-integration.html" />
+    <link rel="prev" title="Query by committee" href="Query-by-committee.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/modAL_b.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/modAL-in-a-nutshell.html">modAL in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Extending-modAL.html">Extending modAL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/ActiveLearner.html">ActiveLearner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/BayesianOptimizer.html">BayesianOptimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Committee.html">Committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/CommitteeRegressor.html">CommitteeRegressor</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Query strategies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Acquisition-functions.html">Acquisition functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Uncertainty-sampling.html">Uncertainty sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Disagreement-sampling.html">Disagreement sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pool-based-sampling.html">Pool-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stream-based-sampling.html">Stream-based sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Active-regression.html">Active regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble-regression.html">Ensemble regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian-optimization.html">Bayesian optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Query-by-committee.html">Query by committee</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bootstrapping and bagging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-dataset">The dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bagging">Bagging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Keras-integration.html">Keras integration</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">modAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Bootstrapping and bagging</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/content/examples/Bootstrapping-and-bagging.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bootstrapping-and-bagging">
+<h1>Bootstrapping and bagging<a class="headerlink" href="#bootstrapping-and-bagging" title="Permalink to this headline">¶</a></h1>
+<p>Bootstrapping and bagging can be very useful when using ensemble models such as the Committee. In essence, bootstrapping is random sampling with replacement from the available training data. Bagging (= bootstrap aggregation) is performing it many times and training an estimator for each bootstrapped dataset. It is available in modAL for both the base ActiveLearner model and the Committee model as well. In this short tutorial, we are going to see how to perform bootstrapping and bagging in your active learning workflow.</p>
+<p>The executable script for this example can be <a class="reference external" href="https://github.com/cosmic-cortex/modAL/blob/master/examples/bagging.py">found here!</a></p>
+<div class="section" id="the-dataset">
+<h2>The dataset<a class="headerlink" href="#the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>In this short example, we will try to learn the shape of three black disks on a white background.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
+
+<span class="c1"># creating the dataset</span>
+<span class="n">im_width</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">im_height</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">im_height</span><span class="p">,</span> <span class="n">im_width</span><span class="p">))</span>
+<span class="c1"># each disk is coded as a triple (x, y, r), where x and y are the centers and r is the radius</span>
+<span class="n">disks</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">im_width</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">im_height</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">disks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># create the pool from the image</span>
+<span class="n">X_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+     <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="p">)</span>
+<span class="c1"># map the intensity values against the grid</span>
+<span class="n">y_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">P</span> <span class="ow">in</span> <span class="n">X_pool</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Here is how it looks:</p>
+<div class="figure align-center">
+<img alt="../../_images/b-data.png" src="../../_images/b-data.png" />
+</div>
+<p>First we shall train three ActiveLearners on a bootstrapped dataset. Then we are going to bundle them together in a Committee and see how bagging is done with modAL. ## Bootstrapping</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span><span class="p">,</span> <span class="n">Committee</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="c1"># initial training data: 100 random pixels</span>
+<span class="n">initial_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_pool</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># initializing the learners</span>
+<span class="n">n_learners</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">learner_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_learners</span><span class="p">):</span>
+    <span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+        <span class="n">X_training</span><span class="o">=</span><span class="n">X_pool</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">],</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_pool</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">],</span>
+        <span class="n">bootstrap_init</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">learner_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">learner</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, the main difference in this from the regular use of ActiveLearner is passing <code class="docutils literal notranslate"><span class="pre">bootstrap_init=True</span></code> upon initialization. This makes it to train the model on a bootstrapped dataset, although it stores the <em>complete</em> training dataset among its known examples. In this exact case, here is how the classifiers perform:</p>
+<div class="figure align-center">
+<img alt="../../_images/b-committee_learners.png" src="../../_images/b-committee_learners.png" />
+</div>
+</div>
+<div class="section" id="bagging">
+<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h2>
+<p>We can put our learners together in a Committee and see how they perform.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># assembling the Committee</span>
+<span class="n">committee</span> <span class="o">=</span> <span class="n">Committee</span><span class="p">(</span><span class="n">learner_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="../../_images/b-committee_prediction.png" src="../../_images/b-committee_prediction.png" />
+</div>
+<p>If you would like to take each learner in the Committee and retrain them using bagging, you can use the <code class="docutils literal notranslate"><span class="pre">.rebag()</span></code> method:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># rebagging the data</span>
+<span class="n">committee</span><span class="o">.</span><span class="n">rebag</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In this case, the classifiers perform in the following way after
+rebagging.</p>
+<div class="figure align-center">
+<img alt="../../_images/b-rebag.png" src="../../_images/b-rebag.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Keras-integration.html" class="btn btn-neutral float-right" title="Bringing your Keras models to modAL workflows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Query-by-committee.html" class="btn btn-neutral" title="Query by committee" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tivadar Danka
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

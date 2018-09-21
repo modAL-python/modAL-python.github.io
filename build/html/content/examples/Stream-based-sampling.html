@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stream-based sampling &mdash; modAL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Active regression" href="Active-regression.html" />
+    <link rel="prev" title="Pool-based sampling" href="Pool-based-sampling.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/modAL_b.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/modAL-in-a-nutshell.html">modAL in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/Extending-modAL.html">Extending modAL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/ActiveLearner.html">ActiveLearner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/BayesianOptimizer.html">BayesianOptimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Committee.html">Committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/CommitteeRegressor.html">CommitteeRegressor</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Query strategies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Acquisition-functions.html">Acquisition functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Uncertainty-sampling.html">Uncertainty sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_strategies/Disagreement-sampling.html">Disagreement sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pool-based-sampling.html">Pool-based sampling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stream-based sampling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-dataset">The dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#active-learning">Active learning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Active-regression.html">Active regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble-regression.html">Ensemble regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian-optimization.html">Bayesian optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Query-by-committee.html">Query by committee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bootstrapping-and-bagging.html">Bootstrapping and bagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keras-integration.html">Keras integration</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">modAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Stream-based sampling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/content/examples/Stream-based-sampling.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stream-based-sampling">
+<h1>Stream-based sampling<a class="headerlink" href="#stream-based-sampling" title="Permalink to this headline">¶</a></h1>
+<p>In addition to pool-based sampling, the stream-based scenario can also be implemented easily with modAL. In this case, the labels are not queried from a pool of instances. Rather, they are given one-by-one for the learner, which queries for its label if it finds the example useful. For instance, an example can be marked as useful if the prediction is uncertain, because acquiring its label would remove this uncertainty.</p>
+<p>The executable script for this example can be <a class="reference external" href="https://github.com/cosmic-cortex/modAL/blob/master/examples/stream-based_sampling.py">found here!</a></p>
+<div class="section" id="the-dataset">
+<h2>The dataset<a class="headerlink" href="#the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we are going to learn a black square on a white background. We are going to use a random forest classifier in a stream-based setting. First, let’s generate some data!</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># creating the image</span>
+<span class="n">im_width</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">im_height</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">im_height</span><span class="p">,</span> <span class="n">im_width</span><span class="p">))</span>
+<span class="n">im</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="n">im_width</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">:</span><span class="n">im_height</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># create the data to stream from</span>
+<span class="n">X_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+     <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="p">)</span>
+<span class="c1"># map the intensity values against the grid</span>
+<span class="n">y_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">im</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">P</span> <span class="ow">in</span> <span class="n">X_full</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In case you are wondering, here is how this looks like!</p>
+<div class="figure align-center">
+<img alt="../../_images/sbs-data.png" src="../../_images/sbs-data.png" />
+</div>
+</div>
+<div class="section" id="active-learning">
+<h2>Active learning<a class="headerlink" href="#active-learning" title="Permalink to this headline">¶</a></h2>
+<p>Initializing the learner is the same as always.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modAL.models</span> <span class="k">import</span> <span class="n">ActiveLearner</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># assembling initial training set</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_initial</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">initial_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_full</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_initial</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span> <span class="o">=</span> <span class="n">X_full</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">],</span> <span class="n">y_full</span><span class="p">[</span><span class="n">initial_idx</span><span class="p">]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># initialize the learner</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">learner</span> <span class="o">=</span> <span class="n">ActiveLearner</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">predictor</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">X_training</span><span class="o">=</span><span class="n">X_training</span><span class="p">,</span> <span class="n">y_training</span><span class="o">=</span><span class="n">y_training</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Initial prediction accuracy: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">learner</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">... </span><span class="n">Initial</span> <span class="n">prediction</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.410244</span>
+</pre></div>
+</div>
+<p>This is how the class prediction probabilities look like for each pixel.</p>
+<div class="figure align-center">
+<img alt="../../_images/sbs-initial.png" src="../../_images/sbs-initial.png" />
+</div>
+<p>Now we are going to randomly sample pixels from the image. If the prediction of the pixel’s value is uncertain, we query the true value and teach it to the classifier. We are going to do this until we reach at least 90% accuracy.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modAL.uncertainty</span> <span class="k">import</span> <span class="n">classifier_uncertainty</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># learning until the accuracy reaches a given threshold</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">learner</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.90</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">stream_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_full</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">if</span> <span class="n">classifier_uncertainty</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">X_full</span><span class="p">[</span><span class="n">stream_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mf">0.4</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">learner</span><span class="o">.</span><span class="n">teach</span><span class="p">(</span><span class="n">X_full</span><span class="p">[</span><span class="n">stream_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_full</span><span class="p">[</span><span class="n">stream_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pixel no. </span><span class="si">%d</span><span class="s1"> queried, new accuracy: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stream_idx</span><span class="p">,</span> <span class="n">learner</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">)))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">83428</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.551316</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">170935</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.491884</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">159529</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.570128</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">170628</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.735812</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">41672</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.785508</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">158656</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.703844</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">170505</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.737596</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">248886</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.741332</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">219077</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.810620</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">181856</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.820960</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">215676</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.850944</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">65082</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.818608</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">116893</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.860196</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">33343</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.809160</span>
+<span class="gp">... </span><span class="n">Pixel</span> <span class="n">no</span><span class="o">.</span> <span class="mi">82664</span> <span class="n">queried</span><span class="p">,</span> <span class="n">new</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.901644</span>
+</pre></div>
+</div>
+<p>As you can see, prediction accuracy can deteriorate after a query, but on the long run, it should get better. (Though this is not always the case with uncertainty-based sampling.) Here are the prediction probabilities after a few queries:</p>
+<div class="figure align-center">
+<img alt="../../_images/sbs-final.png" src="../../_images/sbs-final.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Active-regression.html" class="btn btn-neutral float-right" title="Active regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Pool-based-sampling.html" class="btn btn-neutral" title="Pool-based sampling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tivadar Danka
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
