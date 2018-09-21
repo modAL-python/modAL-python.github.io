@@ -233,7 +233,8 @@ Danka <https://www.tivadardanka.com>`__ (aka
    :maxdepth: 1
    :caption: Examples
    
-   Pool-based sampling <content/examples/Pool-based-sampling>
+   Pool-based sampling <content/examples/pool-based_sampling>
+   Ranked batch-mode sampling <content/examples/ranked_batch_mode>
    Stream-based sampling <content/examples/Stream-based-sampling>
    Active regression <content/examples/Active-regression>
    Ensemble regression <content/examples/Ensemble-regression>
